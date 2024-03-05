@@ -2,6 +2,8 @@ package com.learn.SpringBoot.service;
 
 
 import com.learn.SpringBoot.Entity.Employee;
+import com.learn.SpringBoot.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,6 +12,9 @@ import java.util.List;
 
 @Service
 public class EmployeeService {
+
+    @Autowired
+    EmployeeRepository employeeRepository;
 
     List<Employee> employeeList = new ArrayList<>(Arrays.asList(
             new Employee(1, "First Employee", "Washington"),
@@ -25,7 +30,8 @@ public class EmployeeService {
     }
 
     public void createEmployee(Employee employee){
-        employeeList.add(employee);
+//        employeeList.add(employee);
+        employeeRepository.save(employee);
     }
 
     public void updateEmployee(Employee employee){
