@@ -79,3 +79,27 @@ This Repository contains SpringBoot Implementation
 1. Internal Api's
 2. External Api's
 3. Partner Api's
+
+# JPA - Java Persistence API
+1. it's a Java programming interface that allows developers to interact with databases in an object-oriented way.
+2. Instead of writing complex SQL queries to insert, update, delete, or retrieve data from a database, developers can use JPA to perform these operations using Java objects. 
+3. With JPA, developers can define entities, which are Java classes that represent tables in the database. They can then use JPA to map these entities to the corresponding database tables, and perform database operations on these entities using Java code.
+4. JPA simplifies database interaction in Java applications by providing a more intuitive and object-oriented approach.
+
+### Advantages of using JPA
+1. JPA is easier and simpler to follow
+2. JPA makes querying data easier and helps us write queries in the form of entities rather than SQL
+3. JPA allows us to save, update java objects without using any DML language at all
+4. JPA is easy to integrate with Spring boot framework
+
+# ORM - Object-Relational Mapping
+1. It's a programming technique used to convert data between incompatible type systems: 
+object-oriented programming languages, like Java or Python, and relational databases, like MySQL or PostgreSQL.
+2. In simpler terms, ORM allows developers to work with databases using the language and syntax of their programming language (like Java or Python) rather than writing SQL queries directly. 
+ORM frameworks, such as Hibernate for Java or Django ORM for Python, handle the translation of objects in code into rows in a database table and vice versa.
+
+### Advantages of ORM
+1. Developers can work with database data as if they were manipulating regular programming language objects.
+2. They can avoid writing complex SQL queries manually.
+3. Changes in the database structure can often be managed more easily through the ORM framework.
+4. ORM simplifies database interaction in application development by providing a higher level of abstraction, making it easier for developers to work with databases in their preferred programming language.
