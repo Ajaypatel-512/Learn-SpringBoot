@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -22,11 +23,12 @@ public class EmployeeService {
     ));
 
     public List<Employee> getAllEmployee() {
-        return employeeList;
+        return employeeRepository.findAll();
     }
 
     public Employee getEmployeeById(int id){
-        return employeeList.stream().filter(e -> e.getId() == id).findFirst().get();
+//        return employeeList.stream().filter(e -> e.getId() == id).findFirst().get();
+        return employeeRepository.findById(id).orElseThrow(()->new RuntimeException("Employee Not Found"));
     }
 
     public void createEmployee(Employee employee){
@@ -35,25 +37,29 @@ public class EmployeeService {
     }
 
     public void updateEmployee(Employee employee){
-        List<Employee> temp = new ArrayList<>();
-        for (Employee emp : employeeList){
-            if (emp.getId() == employee.getId()){
-                emp.setEmpName(employee.getEmpName());
-                emp.setCity(employee.getCity());
-            }
-            temp.add(emp);
-        }
-        this.employeeList = temp;
+//        List<Employee> temp = new ArrayList<>();
+//        for (Employee emp : employeeList){
+//            if (emp.getId() == employee.getId()){
+//                emp.setEmpName(employee.getEmpName());
+//                emp.setCity(employee.getCity());
+//            }
+//            temp.add(emp);
+//        }
+//        this.employeeList = temp;
+
+        employeeRepository.save(employee);
     }
 
     public void deleteEmployee(int id){
-        List<Employee> temp = new ArrayList<>();
-        for (Employee emp : employeeList){
-            if (emp.getId() == id){
-                continue;
-            }
-            temp.add(emp);
-        }
-        this.employeeList = temp;
+//        List<Employee> temp = new ArrayList<>();
+//        for (Employee emp : employeeList){
+//            if (emp.getId() == id){
+//                continue;
+//            }
+//            temp.add(emp);
+//        }
+//        this.employeeList = temp;
+
+        employeeRepository.delete(employeeRepository.getReferenceById(id));
     }
 }

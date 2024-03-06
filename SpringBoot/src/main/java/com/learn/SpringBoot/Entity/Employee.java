@@ -14,10 +14,13 @@ public class Employee {
     private String EmpName;
     private String City;
 
+    public Employee() {
+    }
+
     public Employee(int id, String empName, String city) {
         this.id = id;
-        EmpName = empName;
-        City = city;
+        this.EmpName = empName;
+        this.City = city;
     }
 
     public int getId() {
@@ -33,7 +36,7 @@ public class Employee {
     }
 
     public void setEmpName(String empName) {
-        EmpName = empName;
+        this.EmpName = empName;
     }
 
     public String getCity() {
@@ -41,6 +44,6 @@ public class Employee {
     }
 
     public void setCity(String city) {
-        City = city;
+        this.City = city;
     }
 }
