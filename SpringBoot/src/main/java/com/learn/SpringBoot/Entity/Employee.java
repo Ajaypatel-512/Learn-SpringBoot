@@ -1,9 +1,6 @@
 package com.learn.SpringBoot.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Employee {
@@ -13,6 +10,10 @@ public class Employee {
     private int id;
     private String EmpName;
     private String City;
+
+    @OneToOne
+    @JoinColumn(name = "fk_spouse")
+    private Spouse spouse;
 
     public Employee() {
     }
@@ -45,5 +46,13 @@ public class Employee {
 
     public void setCity(String city) {
         this.City = city;
+    }
+
+    public Spouse getSpouse() {
+        return spouse;
+    }
+
+    public void setSpouse(Spouse spouse) {
+        this.spouse = spouse;
     }
 }
