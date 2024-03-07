@@ -2,6 +2,8 @@ package com.learn.SpringBoot.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Employee {
 
@@ -14,6 +16,9 @@ public class Employee {
     @OneToOne
     @JoinColumn(name = "fk_spouse")
     private Spouse spouse;
+
+    @OneToMany
+    private List<Address> addresses;
 
     public Employee() {
     }
@@ -54,5 +59,13 @@ public class Employee {
 
     public void setSpouse(Spouse spouse) {
         this.spouse = spouse;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 }
