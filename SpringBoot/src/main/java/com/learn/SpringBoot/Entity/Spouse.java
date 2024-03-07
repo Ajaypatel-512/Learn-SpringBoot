@@ -11,6 +11,9 @@ public class Spouse {
     private String name;
     private String mobileNo;
     private int age;
+    
+    @OneToOne(mappedBy = "spouse")
+    private Employee employee;
 
     public Spouse() {
     }
@@ -51,5 +54,13 @@ public class Spouse {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
