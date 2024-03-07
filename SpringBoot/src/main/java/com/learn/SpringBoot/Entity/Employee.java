@@ -20,6 +20,12 @@ public class Employee {
     @OneToMany
     private List<Address> addresses;
 
+    @ManyToMany
+    @JoinTable(name = "employee_project",
+    joinColumns = @JoinColumn(name = "fk_employee"),
+    inverseJoinColumns = @JoinColumn(name = "fk_project"))
+    private List<Project> projects;
+
     public Employee() {
     }
 
@@ -67,5 +73,23 @@ public class Employee {
 
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public void removeProjectMethod(Project project){
+        this.projects.remove(project);
+        project.getEmployeeList().remove(project);
+    }
+
+    public void addProjectMethod(Project project){
+        this.projects.add(project);
+        project.getEmployeeList().add(this);
     }
 }
