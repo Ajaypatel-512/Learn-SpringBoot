@@ -2,7 +2,10 @@ package com.learn.SpringBoot.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Employee {
@@ -21,7 +24,7 @@ public class Employee {
 
 //    @OneToMany(cascade = CascadeType.ALL)
 //    @OneToMany(cascade = CascadeType.PERSIST)
-    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private List<Address> addresses;
 
 //    @ManyToMany(cascade = CascadeType.ALL)
@@ -30,7 +33,7 @@ public class Employee {
     @JoinTable(name = "employee_project",
     joinColumns = @JoinColumn(name = "fk_employee"),
     inverseJoinColumns = @JoinColumn(name = "fk_project"))
-    private List<Project> projects;
+    private Set<Project> projects = new HashSet<>();
 
     public Employee() {
     }
@@ -39,6 +42,11 @@ public class Employee {
         this.employeeId = id;
         this.empName = empName;
         this.empCity = city;
+    }
+
+    public Employee(String employee1, String city1) {
+        empName = employee1;
+        empCity = city1;
     }
 
     public int getId() {
@@ -81,11 +89,11 @@ public class Employee {
         this.addresses = addresses;
     }
 
-    public List<Project> getProjects() {
+    public Set<Project> getProjects() {
         return projects;
     }
 
-    public void setProjects(List<Project> projects) {
+    public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
 
@@ -99,6 +107,16 @@ public class Employee {
         project.getEmployeeList().add(this);
     }
 
+    public void addAddress(Address address){
+        this.addresses = new ArrayList<>();
+        this.addresses.add(address);
+        address.setEmployee(this);
+    }
+
+    public void removeAddress(Address address){
+        this.addresses.remove(address);
+        address.setEmployee(null);
+    }
 
 
 }
