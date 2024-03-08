@@ -13,14 +13,17 @@ public class Employee {
     private String empName;
     private String empCity;
 
-    @OneToOne(cascade = CascadeType.ALL) // cascading
+//    @OneToOne(cascade = CascadeType.ALL) // cascading All
+    @OneToOne(cascade = CascadeType.PERSIST) // cascading Persist
     @JoinColumn(name = "fk_spouse")
     private Spouse spouse;
 
-    @OneToMany(cascade = CascadeType.ALL)
+//    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Address> addresses;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+//    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "employee_project",
     joinColumns = @JoinColumn(name = "fk_employee"),
     inverseJoinColumns = @JoinColumn(name = "fk_project"))
