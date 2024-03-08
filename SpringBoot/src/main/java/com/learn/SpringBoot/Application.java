@@ -33,6 +33,7 @@ public class Application {
 			employee.setSpouse(spouse1);
 
 			employeeService.createEmployee(employee);
+			System.out.println("Getting an employee");
 			Employee employee1 = employeeService.getEmployeeById(1);
 		};
 	}

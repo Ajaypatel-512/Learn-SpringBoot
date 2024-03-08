@@ -18,13 +18,14 @@ public class Employee {
 
 //    @OneToOne(cascade = CascadeType.ALL) // cascading All
 //    @OneToOne(cascade = CascadeType.PERSIST) // cascading Persist
-    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}) // cascading Persist
+//    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}) // cascading Persist
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch = FetchType.LAZY) // fetch lazy
     @JoinColumn(name = "fk_spouse")
     private Spouse spouse;
 
 //    @OneToMany(cascade = CascadeType.ALL)
 //    @OneToMany(cascade = CascadeType.PERSIST)
-    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<Address> addresses;
 
 //    @ManyToMany(cascade = CascadeType.ALL)

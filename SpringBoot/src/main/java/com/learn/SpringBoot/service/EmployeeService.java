@@ -3,14 +3,12 @@ package com.learn.SpringBoot.service;
 
 import com.learn.SpringBoot.Entity.Address;
 import com.learn.SpringBoot.Entity.Employee;
+import com.learn.SpringBoot.Entity.Project;
 import com.learn.SpringBoot.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class EmployeeService {
@@ -29,7 +27,13 @@ public class EmployeeService {
 
     public Employee getEmployeeById(int id){
 //        return employeeList.stream().filter(e -> e.getId() == id).findFirst().get();
-        return employeeRepository.findById(id).orElseThrow(()->new RuntimeException("Employee Not Found"));
+        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee Not Found"));
+        System.out.println("Fetching projects in service class");
+        Set<Project> projects = employee.getProjects();
+        for (Project p: projects) {
+            System.out.println(p.getClientName());
+        }
+        return employee;
     }
 
     public void createEmployee(Employee employee){
