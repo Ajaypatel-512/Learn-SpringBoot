@@ -1,6 +1,7 @@
 package com.learn.SpringBoot.service;
 
 
+import com.learn.SpringBoot.Entity.Address;
 import com.learn.SpringBoot.Entity.Employee;
 import com.learn.SpringBoot.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,17 @@ public class EmployeeService {
 
     public void createEmployee(Employee employee){
 //        employeeList.add(employee);
+        ArrayList<Address> addressArrayList = new ArrayList<>();
+        for (Address address: employee.getAddresses()){
+            addressArrayList.add(new Address(address.getLine1(),
+                    address.getLine2(),
+                    address.getZipCode(),
+                    address.getCity(),
+                    address.getState(),
+                    address.getCountry(),
+                    employee));
+        }
+        employee.setAddresses(addressArrayList);
         employeeRepository.save(employee);
     }
 

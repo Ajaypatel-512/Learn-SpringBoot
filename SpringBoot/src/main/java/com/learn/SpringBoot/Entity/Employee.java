@@ -9,18 +9,18 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String EmpName;
-    private String City;
+    private int employeeId;
+    private String empName;
+    private String empCity;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL) // cascading
     @JoinColumn(name = "fk_spouse")
     private Spouse spouse;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Address> addresses;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employee_project",
     joinColumns = @JoinColumn(name = "fk_employee"),
     inverseJoinColumns = @JoinColumn(name = "fk_project"))
@@ -30,33 +30,33 @@ public class Employee {
     }
 
     public Employee(int id, String empName, String city) {
-        this.id = id;
-        this.EmpName = empName;
-        this.City = city;
+        this.employeeId = id;
+        this.empName = empName;
+        this.empCity = city;
     }
 
     public int getId() {
-        return id;
+        return employeeId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.employeeId = id;
     }
 
     public String getEmpName() {
-        return EmpName;
+        return empName;
     }
 
     public void setEmpName(String empName) {
-        this.EmpName = empName;
+        this.empName = empName;
     }
 
-    public String getCity() {
-        return City;
+    public String getEmpCity() {
+        return empCity;
     }
 
-    public void setCity(String city) {
-        this.City = city;
+    public void setEmpCity(String empCity) {
+        this.empCity = empCity;
     }
 
     public Spouse getSpouse() {
@@ -83,13 +83,16 @@ public class Employee {
         this.projects = projects;
     }
 
-    public void removeProjectMethod(Project project){
+    public void removeProject(Project project){
         this.projects.remove(project);
         project.getEmployeeList().remove(project);
     }
 
-    public void addProjectMethod(Project project){
+    public void addProject(Project project){
         this.projects.add(project);
         project.getEmployeeList().add(this);
     }
+
+
+
 }

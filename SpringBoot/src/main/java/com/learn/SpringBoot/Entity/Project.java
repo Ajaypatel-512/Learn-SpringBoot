@@ -1,5 +1,6 @@
 package com.learn.SpringBoot.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,8 +15,12 @@ public class Project {
     private String name;
     private String clientName;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "projects")
     private List<Employee> employeeList;
+
+    public Project() {
+    }
 
     public Project(String name, String clientName) {
         this.name = name;
