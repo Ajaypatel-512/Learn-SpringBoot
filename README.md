@@ -103,3 +103,26 @@ ORM frameworks, such as Hibernate for Java or Django ORM for Python, handle the 
 2. They can avoid writing complex SQL queries manually.
 3. Changes in the database structure can often be managed more easily through the ORM framework.
 4. ORM simplifies database interaction in application development by providing a higher level of abstraction, making it easier for developers to work with databases in their preferred programming language.
+
+# Spring Boot Actuator
+Spring Boot Actuator is a set of additional features that can be added to a Spring Boot application, providing several endpoints to monitor and manage the application. It can be used for production-ready features, such as health checks, metrics, and external configurations.
+1. Info 2. Metrics 3. Beans 4. Health 5. Logger 6. Shutdown and etc
+
+# Microservice vs Monolithics
+### Problem with monolithic Architecture
+1. Difficulty in making a small change, all the component will be redeployed
+2. Lack of scalability, 
+3. long term commitment to single tech stack
+4. Application complexity and its effects on development and deployement
+5. slowing down of IDEs
+6. Increased application start time
+7. large project size
+8. deploying for small changes
+9. team collaboration and autonomy
+
+### Microservice principles
+1. Single Responsibility
+2. Independece
+3. Decentralization
+4. Failure Isolation
+5. Continous Delivery/Deployement
